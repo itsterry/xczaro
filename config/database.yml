@@ -51,6 +51,7 @@ test:
 production:
   primary: &primary_production
     <<: *default
+    host: xczaro-db
     database: xczaro_production
     username: xczaro
     password: poiuyqwert
