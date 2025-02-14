@@ -58,3 +58,6 @@ end
 
 
 gem "dotenv", "~> 3.1"
+
+gem "faraday_middleware-aws-sigv4", "~> 1.0"
+gem "aws-sdk-s3"

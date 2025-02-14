@@ -53,7 +53,7 @@ production:
     <<: *default
     database: xczaro_production
     username: xczaro
-    password: <%= ENV["XCZARO_DATABASE_PASSWORD"] %>
+    password: poiuyqwert
   cache:
     <<: *primary_production
     database: xczaro_production_cache
