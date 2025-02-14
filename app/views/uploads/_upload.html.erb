@@ -1,0 +1,9 @@
+<div id="<%= dom_id upload %>">
+  <p>
+    <%= upload.title %>
+  </p>
+
+  <p>
+    <%= video_tag(upload.attachment, controls: true) if upload.attachment.attached? %>
+  </p>
+</div>
