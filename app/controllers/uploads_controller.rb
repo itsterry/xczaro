@@ -82,6 +82,6 @@ class UploadsController < ApplicationController
   end
 
   def uploads
-    @uploads ||= q.result.page(params[:page]).per(20)
+    @uploads ||= q.result.page(params[:page]).per(7)
   end
 end
