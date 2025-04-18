@@ -1,10 +1,11 @@
 class UploadsController < ApplicationController
   before_action :set_upload, only: %i[ show edit update destroy ]
 
+  expose :q
+  expose :uploads
+
   # GET /uploads or /uploads.json
-  def index
-    @uploads = Upload.all
-  end
+  def index;  end
 
   # GET /uploads/1 or /uploads/1.json
   def show
@@ -58,13 +59,29 @@ class UploadsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_upload
-      @upload = Upload.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def upload_params
-      params.expect(upload: [ :title, :attachment ])
-    end
+  def default_sorts
+    ['title asc']
+  end
+  def q
+    @q ||= begin
+             q = Upload.ransack(params[:q])
+             q.sorts = default_sorts if q.sorts.blank?
+             q
+           end
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_upload
+    @upload = Upload.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def upload_params
+    params.expect(upload: [ :title, :attachment ])
+  end
+
+  def uploads
+    @uploads ||= q.result.page(params[:page]).per(20)
+  end
 end
