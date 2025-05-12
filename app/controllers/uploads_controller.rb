@@ -61,7 +61,7 @@ class UploadsController < ApplicationController
   private
 
   def default_sorts
-    ['title asc']
+    [ "title asc" ]
   end
   def q
     @q ||= begin
