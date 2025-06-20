@@ -10,8 +10,13 @@ class UploadsController < ApplicationController
 
   # GET /uploads/1 or /uploads/1.json
   def show
-    @upload.update access_count: @upload.access_count + 1,
-                  last_accessed_at: Time.current
+    respond_to do |format|
+      format.html do
+        @upload.update access_count: @upload.access_count + 1,
+                       last_accessed_at: Time.current
+      end
+      format.json
+    end
 
   end
 
