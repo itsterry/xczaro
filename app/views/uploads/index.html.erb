@@ -4,7 +4,7 @@
 
 <h1>Uploads</h1>
 
-<%= link_to "New upload", new_upload_path %>
+<%= link_to "New upload", new_upload_path, target: "_blank" %>
  
 <%= search_form_for q, builder: SimpleForm::FormBuilder do |f| %>
   <%= f.input :title_cont, label: false %>
@@ -13,11 +13,22 @@
 <% end %>
 
 <div id="uploads">
-  <% uploads.each do |upload| %>
-    <p>
-      <%= link_to upload.title, upload %>
-    </p>
-  <% end %>
+  <table>
+    <thead>
+      <th><%= sort_link q, :title %></th>
+      <th><%= sort_link q, :access_count, "Views" %></th>
+      <th><%= sort_link q, :last_accessed_at, "Last view" %></th>
+    </thead>
+    <tbody>
+      <% uploads.each do |upload| %>
+        <tr>
+          <td><%= link_to upload.title, upload %></td>
+          <td><%= upload.access_count %></td>
+          <td><%= upload.last_accessed_at ? distance_of_time_in_words_to_now(upload.last_accessed_at) : '-' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
   <%= paginate uploads %>
 </div>
 

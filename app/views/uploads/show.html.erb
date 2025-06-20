@@ -1,10 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @upload %>
+<%= render upload %>
 
 <div>
-  <%= link_to "Edit this upload", edit_upload_path(@upload) %> |
+  <%= link_to "Edit this upload", edit_upload_path(upload) %> |
   <%= link_to "Back to uploads", uploads_path %>
 
-  <%= button_to "Destroy this upload", @upload, method: :delete %>
+  <p>
+    <%= button_to "Destroy this upload", upload, method: :delete, data: { turbo_confirm: 'Sure?' } %>
+  </p>
 </div>

@@ -2,6 +2,7 @@ class UploadsController < ApplicationController
   before_action :set_upload, only: %i[ show edit update destroy ]
 
   expose :q
+  expose :upload, ->{ @upload  }
   expose :uploads
 
   # GET /uploads or /uploads.json
@@ -9,6 +10,9 @@ class UploadsController < ApplicationController
 
   # GET /uploads/1 or /uploads/1.json
   def show
+    @upload.update access_count: @upload.access_count + 1,
+                  last_accessed_at: Time.current
+
   end
 
   # GET /uploads/new
@@ -78,7 +82,7 @@ class UploadsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def upload_params
-    params.expect(upload: [ :title, :attachment ])
+    params.expect(upload: [ :title, :attachment, :optimized ])
   end
 
   def uploads

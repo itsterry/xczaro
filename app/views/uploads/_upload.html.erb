@@ -6,4 +6,7 @@
   <p>
     <%= video_tag(upload.attachment, controls: true) if upload.attachment.attached? %>
   </p>
+  <p>
+    <%= "Optimized" if upload.optimized? %>
+  </p>
 </div>
