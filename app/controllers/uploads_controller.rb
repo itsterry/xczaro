@@ -2,7 +2,7 @@ class UploadsController < ApplicationController
   before_action :set_upload, only: %i[ show edit update destroy ]
 
   expose :q
-  expose :upload, ->{ @upload  }
+  expose :upload, -> { @upload  }
   expose :uploads
 
   # GET /uploads or /uploads.json
@@ -17,7 +17,6 @@ class UploadsController < ApplicationController
       end
       format.json
     end
-
   end
 
   # GET /uploads/new
