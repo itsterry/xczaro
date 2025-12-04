@@ -61,7 +61,7 @@ group :development do
 end
 
 
-gem "dotenv", "~> 3.1"
+gem "dotenv", "~> 3.2"
 
 gem "faraday_middleware-aws-sigv4", "~> 1.0"
 gem "aws-sdk-s3"
