@@ -79,6 +79,10 @@ class UploadsController < ApplicationController
            end
   end
 
+  def records_per_page
+    50
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_upload
     @upload = Upload.find(params.expect(:id))
@@ -90,6 +94,6 @@ class UploadsController < ApplicationController
   end
 
   def uploads
-    @uploads ||= q.result.page(params[:page]).per(7)
+    @uploads ||= q.result.page(params[:page]).per(records_per_page)
   end
 end
