@@ -63,6 +63,10 @@ production:
     <<: *primary_production
     database: xczaro_production_queue
     migrations_paths: db/queue_migrate
+    # Solid Queue's supervisor, dispatcher, scheduler and worker threads each
+    # take a connection, so this pool is sized independently of the Puma
+    # threads that RAILS_MAX_THREADS controls.
+    pool: <%= ENV.fetch("SOLID_QUEUE_DB_POOL") { 5 } %>
   cable:
     <<: *primary_production
     database: xczaro_production_cable
