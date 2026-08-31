@@ -27,6 +27,13 @@
 threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 threads threads_count, threads_count
 
+# Run in clustered mode. A single-worker Puma serialises every request behind
+# one GVL and stalls the whole site when one slow request lands.
+workers ENV.fetch("WEB_CONCURRENCY", 2)
+
+# Fork workers from a booted master so they share memory copy-on-write.
+preload_app!
+
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 port ENV.fetch("PORT", 3000)
 
