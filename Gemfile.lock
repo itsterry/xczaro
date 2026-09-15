@@ -414,6 +414,7 @@ DEPENDENCIES
   faraday_middleware-aws-sigv4 (~> 1.0)
   importmap-rails
   jbuilder
+  json (< 3)
   kamal
   kaminari
   mysql2 (~> 0.5)
